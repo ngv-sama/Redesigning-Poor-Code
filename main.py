@@ -71,7 +71,7 @@ def user_mode():
                 return
                 
             elif mode==1:
-                book_management.list_all_books
+                book_management.list_all_books()
             elif mode==2:
                 checkout_management.checkout_book()
         except KeyError:
