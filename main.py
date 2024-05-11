@@ -3,7 +3,7 @@
 import argparse
 from pyfiglet import Figlet
 
-from storage import Session, init_db
+from storage import Session, init_db, init_db_export
 from models import Users, Books, Checkout, Admins
 
 import book_management
@@ -19,7 +19,8 @@ def admin_menu():
     print("3. Add New User")
     print("4. Add New Admin")
     print("5. Checkout Book")
-    print("6. Exit")
+    print("6. Export Database")
+    print("7. Exit")
     choice = int(input("Enter choice: "))
     return choice
 
@@ -37,7 +38,7 @@ def admin_mode(username, password):
         mode=admin_menu()
     
         try:
-            if mode == 6:
+            if mode == 7:
                 print("Initiating Exit...")
                 return
             elif mode==1:
@@ -50,6 +51,8 @@ def admin_mode(username, password):
                 user_management.add_new_admin()
             elif mode==5:
                 checkout_management.checkout_book()
+            elif mode==6:
+                init_db_export()
 
         except KeyError:
             print("Invalid mode")
