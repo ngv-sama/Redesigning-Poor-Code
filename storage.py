@@ -12,6 +12,27 @@ Session=sessionmaker(bind=engine)
 def insert_initial_values(*args, **kwargs):
     session = Session()
     
+    # Add default users
+    users = [Users(name=f'User_{i}') for i in range(1, 6)]
+    session.add_all(users)
+    session.flush()  # Ensure IDs are assigned
+
+    # Add default books
+    books = [
+        Books(title=f'Book_{i}', isbn=f'ISBN_{i}', language='English', author_name=f'Author_{i}')
+        for i in range(1, 6)
+    ]
+    session.add_all(books)
+    session.flush()
+
+    # Add default checkouts
+    checkouts = [
+        Checkout(user_id=users[i].id, book_id=books[i].id)
+        for i in range(5)
+    ]
+    session.add_all(checkouts)
+    
+    
     default_user = Users(name='Default')
     session.add(default_user)
     
