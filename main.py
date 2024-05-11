@@ -20,8 +20,9 @@ def admin_menu():
     print("4. Add New User")
     print("5. Add New Admin")
     print("6. Checkout Book")
-    print("7. Export Database")
-    print("8. Exit")
+    print("7. Checkin Book")
+    print("8. Export Database")
+    print("9. Exit")
     choice = int(input("Enter choice: "))
     return choice
 
@@ -29,8 +30,9 @@ def user_menu():
     print("\nLibSys: Library Management System")
     print("1. List Books")
     print("2. Checkout Book")
-    print("3. Search Books")
-    print("4. Exit")
+    print("3. Checkin Book")
+    print("4. Search Books")
+    print("5. Exit")
     choice = int(input("Enter choice: "))
     return choice
 
@@ -44,7 +46,7 @@ def admin_mode(username, password):
         mode=admin_menu()
     
         try:
-            if mode == 8:
+            if mode == 9:
                 print("Initiating Exit...")
                 return
             elif mode==1:
@@ -60,6 +62,8 @@ def admin_mode(username, password):
             elif mode==6:
                 checkout_management.checkout_book()
             elif mode==7:
+                checkout_management.check_in()
+            elif mode==8:
                 init_db_export()
 
         except KeyError:
@@ -74,7 +78,7 @@ def user_mode():
         print(mode)
 
         try:
-            if mode == 4:
+            if mode == 5:
                 print("Initiating Exit...")
                 return
                 
@@ -83,6 +87,8 @@ def user_mode():
             elif mode==2:
                 checkout_management.checkout_book()
             elif mode==3:
+                checkout_management.check_in()
+            elif mode==4:
                 book_management.find_book()
         except KeyError:
             print("Invalid mode")

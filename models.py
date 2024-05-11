@@ -11,6 +11,7 @@ class Books(Base):
     isbn = Column(String(256), nullable=False)
     language = Column(String(256), nullable=True)
     author_name = Column(String(256), nullable=True)
+    availability = Column(bool, default=True)
     
 
 class Users(Base):
