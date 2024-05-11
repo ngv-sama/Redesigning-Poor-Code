@@ -8,6 +8,7 @@ def add_new_user():
     new_user=Users(name=name)
     session.add(new_user)
     session.commit()
+    print("User added successfully")
     session.close()
 
 
@@ -19,6 +20,7 @@ def add_new_admin():
     new_admin=Admins(username=username, password=password, user_id=user_id)
     session.add(new_admin)
     session.commit()
+    print("New Admin Established Successfully")
     session.close()
 
 def check_valid(username, password):
@@ -28,3 +30,32 @@ def check_valid(username, password):
         if check.password==password:
             return True
     return False
+
+def delete_user():
+    session=Session()
+    user_id=int(input("Enter User Id to be deleted: "))
+    query=session.query(Users).get(user_id)
+    if(query==None):
+        print("User Not Found")
+        session.close()
+        return
+    flag=input(f"Are you sure you want to delete {query.id} named {query.name} (Y/N)")
+    
+    print(flag)
+    
+    if(flag.lower()=='y'):
+        session.delete(query)
+        session.commit()
+        session.close()
+        print("User deleted Successfully")
+        return
+    else:
+        session.close()
+        return
+
+def list_users():
+    session=Session()
+    users = session.query(Users).all()
+    for user in users:
+        print(f"User id:{user.id}, User name:{user.name}")
+    session.close()

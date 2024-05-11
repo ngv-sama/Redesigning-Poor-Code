@@ -22,7 +22,10 @@ def admin_menu():
     print("6. Checkout Book")
     print("7. Checkin Book")
     print("8. Export Database")
-    print("9. Exit")
+    print("9. Delete Books")
+    print("10. List All Users")
+    print("11. Delete Users")
+    print("12. Exit")
     choice = int(input("Enter choice: "))
     return choice
 
@@ -46,7 +49,7 @@ def admin_mode(username, password):
         mode=admin_menu()
     
         try:
-            if mode == 9:
+            if mode == 12:
                 print("Initiating Exit...")
                 return
             elif mode==1:
@@ -65,6 +68,12 @@ def admin_mode(username, password):
                 checkout_management.check_in()
             elif mode==8:
                 init_db_export()
+            elif mode==9:
+                book_management.delete_book()
+            elif mode==10:
+                user_management.delete_user()
+            elif mode==11:
+                user_management.list_users()
 
         except KeyError:
             print("Invalid mode")

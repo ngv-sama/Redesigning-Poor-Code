@@ -45,6 +45,29 @@ def find_book():
         query=session.query(Books).filter_by(isbn=isbn).all()
         print_query(query)
 
+def delete_book():
+    session=Session()
+    book_id=input("Enter Book Id to Delete: ")
+    query=session.query(Books).get(book_id)
+    if(query==None):
+        print("Book not found")
+        return
+    else:
+        if(query.availability==False):
+            print("Book is not available. Kindly retry once checked-in")
+            session.close()
+            return
+        flag=input(f"Are you sure you want to delete {query.title} by {query.author_name} with ISBN number {query.isbn} (Y/N)")
+        if(flag.lower()=='y'):
+            session.delete(query)
+            session.commit()
+            session.close()
+            print("Book Deleted Successfuly")
+        else:
+            session.close()
+            return
+
+
 def print_query(query):
     for book in query:
             print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}, Availability: {book.availability}")
