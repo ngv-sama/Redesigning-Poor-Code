@@ -35,16 +35,17 @@ def find_book():
     if(choice==1):
         title = input("Enter Book Title: ")
         query=session.query(Books).filter_by(title=title).all()
-        for book in query:
-            print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")
+        print_query(query)
     elif(choice==2):
         author_name=input("Enter Book Author: ")
         query=session.query(Books).filter_by(author_name=author_name).all()
-        for book in query:
-            print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")
+        print_query(query)
     elif(choice==3):
         isbn=input("Enter Book ISBN: ")
         query=session.query(Books).filter_by(isbn=isbn).all()
-        for book in query:
-            print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")
+        print_query(query)
+
+def print_query(query):
+    for book in query:
+            print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}, Availability: {book.availability}")
 
