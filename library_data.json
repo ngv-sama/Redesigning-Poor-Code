@@ -1,21 +1,33 @@
 {
-    "Users": [],
+    "Users": [
+        {
+            "id": 1,
+            "name": "Default"
+        }
+    ],
     "Books": [
         {
             "id": 1,
             "title": "Harry Potter",
             "isbn": "123456",
             "language": "English",
-            "author_name": "JK Rowling"
+            "author_name": "JK"
         },
         {
             "id": 2,
-            "title": "Harry Potter",
-            "isbn": "123456",
+            "title": "Percy Jackson",
+            "isbn": "8766",
             "language": "English",
-            "author_name": "JK"
+            "author_name": "Rick Riordan"
         }
     ],
     "Checkouts": [],
-    "Admins": []
+    "Admins": [
+        {
+            "id": 1,
+            "username": "123456",
+            "password": "123456",
+            "user_id": null
+        }
+    ]
 }
