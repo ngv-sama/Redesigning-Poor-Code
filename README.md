@@ -27,8 +27,8 @@ LibSys is a command-line interface (CLI) based application designed to manage li
 
 1. **Clone the Repository**:
    ```
-   git clone https://yourrepository.com/LibraryManagementSystem.git
-   cd LibraryManagementSystem
+   git clone https://yourrepository.com/Redesigning-Poor-Code.git
+   cd Redesigning-Poor-Code
    ```
 
 2. **Set up a Python Environment** (Optional but recommended):
