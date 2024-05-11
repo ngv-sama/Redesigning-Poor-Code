@@ -25,7 +25,7 @@ def list_all_books():
 def find_book():
     session=Session()
     print("\nLibSys: Library Management System")
-    print("Search Book By:")
+    print("Search Book By: ")
     print("1. Book Title")
     print("2. Book Author")
     print("3. Book ISBN")
@@ -38,12 +38,12 @@ def find_book():
         for book in query:
             print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")
     elif(choice==2):
-        author_name=input("Enter Book Author")
+        author_name=input("Enter Book Author: ")
         query=session.query(Books).filter_by(author_name=author_name).all()
         for book in query:
             print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")
     elif(choice==3):
-        isbn=input("Enter Book ISBN")
+        isbn=input("Enter Book ISBN: ")
         query=session.query(Books).filter_by(isbn=isbn).all()
         for book in query:
             print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")

@@ -29,7 +29,8 @@ def user_menu():
     print("\nLibSys: Library Management System")
     print("1. List Books")
     print("2. Checkout Book")
-    print("3. Exit")
+    print("3. Search Books")
+    print("4. Exit")
     choice = int(input("Enter choice: "))
     return choice
 
@@ -73,7 +74,7 @@ def user_mode():
         print(mode)
 
         try:
-            if mode == 3:
+            if mode == 4:
                 print("Initiating Exit...")
                 return
                 
@@ -81,6 +82,8 @@ def user_mode():
                 book_management.list_all_books()
             elif mode==2:
                 checkout_management.checkout_book()
+            elif mode==3:
+                book_management.find_book()
         except KeyError:
             print("Invalid mode")
         
