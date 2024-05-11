@@ -70,9 +70,9 @@ def admin_mode(username, password):
                 init_db_export()
             elif mode==9:
                 book_management.delete_book()
-            elif mode==10:
-                user_management.delete_user()
             elif mode==11:
+                user_management.delete_user()
+            elif mode==10:
                 user_management.list_users()
 
         except KeyError:
