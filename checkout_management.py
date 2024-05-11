@@ -6,7 +6,8 @@ def checkout_book():
     user_id=input("Enter your User Id: ")
     book_id=input("Enter the Book Id: ")
     user_id = session.query(Users).get(user_id)
-    if(user_id==None):
+    book_id=session.query(Books).get(book_id)
+    if(user_id==None or book_id==None):
         print("User not found, please contact Admin")
         session.close()
         return
