@@ -1,0 +1,21 @@
+{
+    "Users": [],
+    "Books": [
+        {
+            "id": 1,
+            "title": "Harry Potter",
+            "isbn": "123456",
+            "language": "English",
+            "author_name": "JK Rowling"
+        },
+        {
+            "id": 2,
+            "title": "Harry Potter",
+            "isbn": "123456",
+            "language": "English",
+            "author_name": "JK"
+        }
+    ],
+    "Checkouts": [],
+    "Admins": []
+}

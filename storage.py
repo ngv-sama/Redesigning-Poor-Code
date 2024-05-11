@@ -12,27 +12,6 @@ Session=sessionmaker(bind=engine)
 def insert_initial_values(*args, **kwargs):
     session = Session()
     
-    # Add default users
-    users = [Users(name=f'User_{i}') for i in range(1, 6)]
-    session.add_all(users)
-    session.flush()  # Ensure IDs are assigned
-
-    # Add default books
-    books = [
-        Books(title=f'Book_{i}', isbn=f'ISBN_{i}', language='English', author_name=f'Author_{i}')
-        for i in range(1, 6)
-    ]
-    session.add_all(books)
-    session.flush()
-
-    # Add default checkouts
-    checkouts = [
-        Checkout(user_id=users[i].id, book_id=books[i].id)
-        for i in range(5)
-    ]
-    session.add_all(checkouts)
-    
-    
     default_user = Users(name='Default')
     session.add(default_user)
     
@@ -55,7 +34,7 @@ def init_db_export():
     # Query data from each table
     data = {
         "Users": [dict(id=user.id, name=user.name) for user in session.query(Users).all()],
-        "Books": [dict(id=book.id, title=book.title, isbn=book.isbn, language=book.language, author_id=book.author_id) for book in session.query(Books).all()],
+        "Books": [dict(id=book.id, title=book.title, isbn=book.isbn, language=book.language, author_name=book.author_name) for book in session.query(Books).all()],
         "Checkouts": [dict(id=checkout.id, user_id=checkout.user_id, book_id=checkout.book_id) for checkout in session.query(Checkout).all()],
         "Admins": [dict(id=admin.id, username=admin.username, password=admin.password, user_id=admin.user_id) for admin in session.query(Admins).all()]
     }
