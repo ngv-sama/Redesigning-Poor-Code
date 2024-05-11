@@ -20,3 +20,11 @@ def add_new_admin():
     session.add(new_admin)
     session.commit()
     session.close()
+
+def check_valid(username, password):
+    session=Session()
+    checks=session.query(Admins).filter_by(username=username).all()
+    for check in checks:
+        if check.password==password:
+            return True
+    return False

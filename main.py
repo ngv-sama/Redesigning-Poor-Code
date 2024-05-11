@@ -16,11 +16,12 @@ def admin_menu():
     print("\nLibSys: Library Management System")
     print("1. Add Book")
     print("2. List Books")
-    print("3. Add New User")
-    print("4. Add New Admin")
-    print("5. Checkout Book")
-    print("6. Export Database")
-    print("7. Exit")
+    print("3. Search Books")
+    print("4. Add New User")
+    print("5. Add New Admin")
+    print("6. Checkout Book")
+    print("7. Export Database")
+    print("8. Exit")
     choice = int(input("Enter choice: "))
     return choice
 
@@ -34,11 +35,15 @@ def user_menu():
 
 
 def admin_mode(username, password):
+    if(not user_management.check_valid(username, password)):
+        print("Incorrect Username or Password")
+        print("Please try again later...")
+        return
     while True:
         mode=admin_menu()
     
         try:
-            if mode == 7:
+            if mode == 8:
                 print("Initiating Exit...")
                 return
             elif mode==1:
@@ -46,12 +51,14 @@ def admin_mode(username, password):
             elif mode==2:
                 book_management.list_all_books()
             elif mode==3:
-                user_management.add_new_user()
+                book_management.find_book()
             elif mode==4:
-                user_management.add_new_admin()
+                user_management.add_new_user()
             elif mode==5:
-                checkout_management.checkout_book()
+                user_management.add_new_admin()
             elif mode==6:
+                checkout_management.checkout_book()
+            elif mode==7:
                 init_db_export()
 
         except KeyError:
@@ -109,7 +116,8 @@ def main():
         password=args.password
         username=args.username
         if(username==None or password==None):
-            print("Username or Password Invalid. Please Try Again") 
+            print("Username or Password Invalid. Please Try Again")
+            return 
         admin_mode(username, password)
     
     if(args.mode==1):
