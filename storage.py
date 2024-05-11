@@ -2,12 +2,14 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker
 from models import Base, Users, Books, Checkout, Admins
 import json
-
+# Initializes ORM and SQL Engine
 
 engine = create_engine("sqlite:///library.db")
+# Binds engine to session token
 Session=sessionmaker(bind=engine)
 
 
+# Initializes defualt value in db upon instantiation using events
 @event.listens_for(Admins.__table__, 'after_create')
 def insert_initial_values(*args, **kwargs):
     session = Session()
@@ -23,10 +25,12 @@ def insert_initial_values(*args, **kwargs):
 
     session.close()
 
-
+# Creates tables based on engine metadata
 def init_db():
     Base.metadata.create_all(engine)
 
+
+# Driver code to export all database data in JSON format
 def init_db_export():
     Session = sessionmaker(bind=engine)
     session = Session()

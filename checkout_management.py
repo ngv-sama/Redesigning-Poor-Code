@@ -1,6 +1,7 @@
 from storage import Session, init_db
 from models import Users, Books, Checkout, Admins
 
+# Handles a book checkout
 def checkout_book():
     session = Session()
     user_id = int(input("Enter your User Id: "))
@@ -26,7 +27,7 @@ def checkout_book():
     print(f"Book '{book.title}' checked out successfully.")
 
 
-
+# Handles a book checkin
 def check_in():
     session=Session()
     book_id = int(input("Enter the Book Id: "))

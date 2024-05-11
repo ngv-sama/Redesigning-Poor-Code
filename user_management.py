@@ -1,7 +1,7 @@
 from storage import Session, init_db
 from models import Users, Books, Checkout, Admins
 
-
+# Function to add a new user
 def add_new_user():
     session=Session()
     name = input("Enter Name of New User: ")
@@ -11,7 +11,7 @@ def add_new_user():
     print("User added successfully")
     session.close()
 
-
+# Function to add a new admin
 def add_new_admin():
     session=Session()
     username = input("Enter Username of New Admin: ")
@@ -23,6 +23,7 @@ def add_new_admin():
     print("New Admin Established Successfully")
     session.close()
 
+# Check if admin credentials are valid in database
 def check_valid(username, password):
     session=Session()
     checks=session.query(Admins).filter_by(username=username).all()
@@ -31,6 +32,7 @@ def check_valid(username, password):
             return True
     return False
 
+# Delete a current User
 def delete_user():
     session=Session()
     user_id=int(input("Enter User Id to be deleted: "))
@@ -53,6 +55,7 @@ def delete_user():
         session.close()
         return
 
+# List all Current Users in DataBase
 def list_users():
     session=Session()
     users = session.query(Users).all()

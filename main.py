@@ -11,7 +11,7 @@ import user_management
 import checkout_management
 
 
-
+# Function to print the Admin Menu
 def admin_menu():
     print("\nLibSys: Library Management System")
     print("1. Add Book")
@@ -29,6 +29,7 @@ def admin_menu():
     choice = int(input("Enter choice: "))
     return choice
 
+# Function to print the User Menu
 def user_menu():
     print("\nLibSys: Library Management System")
     print("1. List Books")
@@ -40,6 +41,7 @@ def user_menu():
     return choice
 
 
+# Switch Case for Admin Mode
 def admin_mode(username, password):
     if(not user_management.check_valid(username, password)):
         print("Incorrect Username or Password")
@@ -80,7 +82,7 @@ def admin_mode(username, password):
         
     
         
-
+# Switch Case for User Mode
 def user_mode():
     while True:
         mode=user_menu()
@@ -105,8 +107,9 @@ def user_mode():
         
 
 
-
+# Main Driver Function
 def main():
+    # Handling CLI interface and parameters
     banner = Figlet(font="doom")
     print("\n")
     print(banner.renderText("L i b S y s"))
@@ -130,6 +133,8 @@ def main():
     
     args=parser.parse_args()
 
+
+    # Verifying Valid Admin
     if(args.mode==0):
         password=args.password
         username=args.username
@@ -138,6 +143,7 @@ def main():
             return 
         admin_mode(username, password)
     
+    # User Mode
     if(args.mode==1):
         user_mode()
 
@@ -145,5 +151,6 @@ def main():
     
 
 if __name__ == "__main__":
-    init_db()
+    # Initializing Database and Main functions
+    init_db() 
     main()

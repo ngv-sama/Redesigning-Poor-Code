@@ -2,7 +2,7 @@
 from storage import Session, init_db
 from models import  Users, Books, Checkout, Admins
 
-
+# Add a new book
 def add_new_book():
     session=Session()
     title=input("Enter Book Title: ")
@@ -15,6 +15,7 @@ def add_new_book():
     session.close()
     print("Book Added to Database Successfully")
 
+# List all existing books
 def list_all_books():
     session=Session()
     books = session.query(Books).all()
@@ -22,6 +23,7 @@ def list_all_books():
         print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")
     session.close()
 
+# Search for a book based on criteria
 def find_book():
     session=Session()
     print("\nLibSys: Library Management System")
@@ -45,6 +47,7 @@ def find_book():
         query=session.query(Books).filter_by(isbn=isbn).all()
         print_query(query)
 
+# Delete existing books
 def delete_book():
     session=Session()
     book_id=input("Enter Book Id to Delete: ")
@@ -67,7 +70,7 @@ def delete_book():
             session.close()
             return
 
-
+# Auxilliary Function to print search results
 def print_query(query):
     for book in query:
             print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}, Availability: {book.availability}")
