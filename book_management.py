@@ -18,7 +18,6 @@ def add_new_book():
 def list_all_books():
     session=Session()
     books = session.query(Books).all()
-    print("List of Books")
     for book in books:
         print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")
     session.close()
