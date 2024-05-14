@@ -1,4 +1,8 @@
 # main.py
+# To Access Admin Mode and use all features
+# Type the following in the CMDLET:
+# python main.py --mode 0 --username 123456 --password 123456
+
 
 import argparse
 from pyfiglet import Figlet

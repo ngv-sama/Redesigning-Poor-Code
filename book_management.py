@@ -16,11 +16,14 @@ class BookManager:
         session.close()
         print("Book Added to Database Successfully")
 
+    def print_query(self, query):
+        for book in query:
+            print(f"Book ID: {book.id}, ISBN: {book.isbn}, Title: {book.title}, Author: {book.author_name}, Availability: {book.availability}")
+    
     def list_all_books(self):
         session = Session()
         books = session.query(Books).all()
-        for book in books:
-            print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}, Available: {book.availability}")
+        self.print_query(books)
         session.close()
 
     def find_book(self):
@@ -42,6 +45,9 @@ class BookManager:
         elif choice == 3:
             isbn = input("Enter Book ISBN: ")
             query = session.query(Books).filter_by(isbn=isbn).all()
+        
+        elif choice == 4:
+            return
 
         self.print_query(query)
         session.close()
@@ -100,6 +106,4 @@ class BookManager:
         print("Book updated successfully.")
         session.close()
 
-    def print_query(self, query):
-        for book in query:
-            print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}, Availability: {book.availability}")
+    
