@@ -20,7 +20,7 @@ def list_all_books():
     session=Session()
     books = session.query(Books).all()
     for book in books:
-        print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}")
+        print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author_name}, Available: {book.availability}")
     session.close()
 
 # Search for a book based on criteria
@@ -69,6 +69,41 @@ def delete_book():
         else:
             session.close()
             return
+
+def edit_book():
+    session = Session()
+    book_id = int(input("Enter the book ID you want to edit: "))
+    book = session.query(Books).get(book_id)
+    
+    if book is None:
+        print("No book found with the given ID.")
+        session.close()
+        return
+
+    print(f"Editing book: {book.title}")
+    new_title = input("Enter new title (leave blank to keep current): ").strip()
+    new_isbn = input("Enter new ISBN (leave blank to keep current): ").strip()
+    new_language = input("Enter new language (leave blank to keep current): ").strip()
+    new_author_name = input("Enter new author name (leave blank to keep current): ").strip()
+    new_availability = input("Enter new availability (True/False, leave blank to keep current): ").strip()
+
+    if new_title:
+        book.title = new_title
+    if new_isbn:
+        book.isbn = new_isbn
+    if new_language:
+        book.language = new_language
+    if new_author_name:
+        book.author_name = new_author_name
+    if new_availability.lower() in ['true', 'false']:
+        book.availability = new_availability.lower() == 'true'
+
+    session.commit()
+    print("Book updated successfully.")
+    session.close()
+
+
+
 
 # Auxilliary Function to print search results
 def print_query(query):
